@@ -1,6 +1,16 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-void main() {
-  runApp(GetMaterialApp());
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
+  runApp(GetX(builder: (context)=>MyApp()));
+}
+class MyApp extends StatelessWidget{
+  @override
+  Widget build(BuildContext context) {
+   return GetMaterialApp(title: 'Blog',);
+  }
+
 }
