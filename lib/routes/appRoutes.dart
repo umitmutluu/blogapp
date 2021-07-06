@@ -1,6 +1,7 @@
 part of 'appPages.dart';
 
 abstract class Routes{
+  Routes._();
   static const HOME =_Path.Home;
 }
 
