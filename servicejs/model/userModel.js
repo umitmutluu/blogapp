@@ -35,7 +35,7 @@ const userSchema= new Schema({
         required: true,
         trim: true
     }
-},{collection:'Users',timestamps:tue});
+},{collection:'Users',timestamps:true});
 
 const User=mongoose.model('User',userSchema);
 module.exports=User;

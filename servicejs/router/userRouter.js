@@ -4,6 +4,16 @@ const createError=require('http-errors');
 const bcrypt=require('bcrypt');
 
 
+
+
+
+router.get('/list', async (req, res) => {
+    const allUsers = await User.find({});
+    res.json(allUsers);
+
+});
+
+
 router.post('/create',async(req,res,next)=>{
     try{
 const newUser=new User(req.body);
@@ -14,3 +24,7 @@ res.json(val);
 next(createError(400,'bad Request'));
     }
 });
+
+
+
+module.exports=router;
