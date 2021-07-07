@@ -39,7 +39,7 @@ dependencies:
   fancy_bottom_navigation: ^0.3.3
   connectivity: ^3.0.3
   google_fonts: ^2.1.0
-
+  http: ^0.13.3
 
 dev_dependencies:
   flutter_test:
