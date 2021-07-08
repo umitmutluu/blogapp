@@ -2,7 +2,7 @@ import 'package:blogapp/views/presenter/presenterScreen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 
-class LoginController extends GetxController{
+class RegisterController extends GetxController{
 
 
   TextEditingController name =TextEditingController();
