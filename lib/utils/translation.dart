@@ -9,25 +9,29 @@ class MyTranslation extends Translations{
       'name':'name',
       'username':'username',
       'email':'e-mail',
+      'hesapAc':'Don\'t have an account? ',
+      'olustur':'Create account! ',
+
+      'zatenVar':"Already have an account?",
       'password':'Password',
-      'body':'here is body',
       'kayıt':'Sing up',
       'Err':'Error',
       'boşBırakma':"Do not leave fields blank",
-      'zaten var':'Do you have account already',
-      'login':'Login'
+      'login':'Sign in!!'
     },
     'tr':{
       'title':'Blog uygulaması',
       'name':'İsim',
       'username':'Kullanıcı Adı',
-      'email':'e-posta Adresi',
+      'email':'E-Posta',
+      'hesapAc':'Bir Hesabınız Yok mu? ',
+      'olustur':'Hesap Oluştur! ',
+
+      'zatenVar':"Zaten bir hesabın var mı?  ",
       'password':'Şifre',
-      'body':'burası gövde ',
       'kayıt':'Kayıt ol ',
       'Err':'Hata ',
       'boşBırakma':'Zorunlu alanları boş bırakamazsınız ',
-      'zaten var':'Zaten bir hesabınız var mı',
       "login":'Giriş yap'
     }
   };

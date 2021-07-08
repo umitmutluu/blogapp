@@ -32,7 +32,9 @@ class LoginController extends GetxController{
   }
 
 
-  void login(){
+  Future<void> login()async{
+
+   //todo buraya authmetodu gelecek token alınacak şifre kontrolu yapılacak
     Get.off(PresenterScreen());
   }
 

@@ -26,14 +26,14 @@ class LoginScreen extends GetView<LoginController>  {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Text('Don\'t have an account?'.tr,
+                  Text('hesapAc'.tr,
                       style: TextStyle(color: Colors.black)),
                   GestureDetector(
                     onTap: () async{
                       Get.put(RegisterController());
-                 Get.to(RegisterScreen());
+                 Get.to(RegisterScreen(),transition: Transition.rightToLeftWithFade);
                     },
-                    child: Text('Create account!'.tr,
+                    child: Text('olustur'.tr,
                         style: TextStyle(color: Colors.blue)),
                   ),
                 ],
@@ -86,145 +86,12 @@ class LoginWidget extends StatelessWidget {
                   padding:
                       const EdgeInsets.symmetric(horizontal: 12, vertical: 4),
                   child: TextField(
-                    controller: controller.email,
-                    decoration: InputDecoration(
-                        icon: Icon(Icons.email_outlined),
-                        fillColor: Colors.white,
-                        border: InputBorder.none,
-                        hintText: "Email"),
-                  ),
-                ),
-              ),
-            ],
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Container(
-                width: MediaQuery.of(context).size.width / 1.2,
-                margin: EdgeInsets.only(top: 30),
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(25),
-                  color: Colors.grey.withOpacity(.3),
-                ),
-                child: Padding(
-                  padding:
-                      const EdgeInsets.symmetric(horizontal: 12, vertical: 4),
-                  child: TextField(
-                    controller: controller.password,
-                    decoration: InputDecoration(
-                        icon: Icon(Icons.lock),
-                        fillColor: Colors.white,
-                        border: InputBorder.none,
-                        hintText: "Password"),
-                  ),
-                ),
-              ),
-            ],
-          ),
-          Padding(
-              padding: const EdgeInsets.all(25),
-              child: MaterialButton(
-                onPressed: () {},
-                child: Text('bla'),
-                color: Colors.green,
-              ))
-        ],
-      ),
-    );
-  }
-}
-
-class RegisterWidget extends StatelessWidget {
-  final LoginController controller;
-
-  RegisterWidget({required this.controller});
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      margin: EdgeInsets.all(10),
-      decoration: BoxDecoration(
-          color: Colors.white,
-          boxShadow: [
-            BoxShadow(
-              color: Colors.grey.withOpacity(.5),
-              blurRadius: 10,
-            )
-          ],
-          borderRadius: BorderRadius.circular(20)),
-      child: Wrap(
-        children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Container(
-                width: MediaQuery.of(context).size.width / 1.2,
-                margin: EdgeInsets.only(top: 30),
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(25),
-                  color: Colors.grey.withOpacity(.3),
-                ),
-                child: Padding(
-                  padding:
-                      const EdgeInsets.symmetric(horizontal: 12, vertical: 4),
-                  child: TextField(
-                    controller: controller.name,
-                    decoration: InputDecoration(
-                        icon: Icon(Icons.person),
-                        fillColor: Colors.white,
-                        border: InputBorder.none,
-                        hintText: "name".tr),
-                  ),
-                ),
-              ),
-            ],
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Container(
-                width: MediaQuery.of(context).size.width / 1.2,
-                margin: EdgeInsets.only(top: 30),
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(25),
-                  color: Colors.grey.withOpacity(.3),
-                ),
-                child: Padding(
-                  padding:
-                      const EdgeInsets.symmetric(horizontal: 12, vertical: 4),
-                  child: TextField(
                     controller: controller.username,
                     decoration: InputDecoration(
-                        icon: Icon(Icons.person),
+                        icon: Icon(Icons.email_outlined),
                         fillColor: Colors.white,
                         border: InputBorder.none,
                         hintText: "username".tr),
-                  ),
-                ),
-              ),
-            ],
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Container(
-                width: MediaQuery.of(context).size.width / 1.2,
-                margin: EdgeInsets.only(top: 30),
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(25),
-                  color: Colors.grey.withOpacity(.3),
-                ),
-                child: Padding(
-                  padding:
-                      const EdgeInsets.symmetric(horizontal: 12, vertical: 4),
-                  child: TextField(
-                    controller: controller.email,
-                    decoration: InputDecoration(
-                        icon: Icon(Icons.email_outlined),
-                        fillColor: Colors.white,
-                        border: InputBorder.none,
-                        hintText: "email".tr),
                   ),
                 ),
               ),
@@ -255,19 +122,19 @@ class RegisterWidget extends StatelessWidget {
               ),
             ],
           ),
-          Padding(
-            padding: const EdgeInsets.all(25),
-            child: MaterialButton(
-              onPressed: () {},
-              color: Colors.teal,
-              child: Text(
-                'kayıt'.tr,
-                style: normalBeyaz,
-              ),
-            ),
+          Center(
+            child: Padding(
+                padding: const EdgeInsets.all(25),
+                child: MaterialButton(minWidth: Get.width/2,
+                  onPressed: () =>controller.login(),
+                  child: Text('login'.tr,style: normalBeyaz,),
+                  color: Colors.teal,
+                )),
           )
         ],
       ),
     );
   }
 }
+
+

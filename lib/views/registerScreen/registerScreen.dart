@@ -1,6 +1,5 @@
 import 'package:blogapp/utils/assetPaths.dart';
 import 'package:blogapp/utils/textStyle.dart';
-import 'package:blogapp/widgets/bottomTextWidget.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -23,11 +22,11 @@ class RegisterScreen extends GetView<RegisterController> {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Text('Already have an account?'.tr,
+                  Text('zatenVar'.tr,
                       style: TextStyle(color: Colors.black)),
                   GestureDetector(
-                    onTap: () => Get.back(),
-                    child: Text('Sign in!!'.tr,
+                    onTap: () => controller.geriDon(),
+                    child: Text('login'.tr,
                         style: TextStyle(color: Colors.blue)),
                   ),
 
@@ -125,7 +124,7 @@ class RegisterWidget extends StatelessWidget {
                 child: Padding(
                   padding:
                       const EdgeInsets.symmetric(horizontal: 12, vertical: 4),
-                  child: TextField(
+                  child: TextField(keyboardType: TextInputType.emailAddress,
                     controller: controller.email,
                     decoration: InputDecoration(
                         icon: Icon(Icons.email_outlined),
@@ -162,14 +161,16 @@ class RegisterWidget extends StatelessWidget {
               ),
             ],
           ),
-          Padding(
-            padding: const EdgeInsets.all(25),
-            child: MaterialButton(
-              onPressed: () {},
-              color: Colors.teal,
-              child: Text(
-                'kayıt'.tr,
-                style: normalBeyaz,
+          Center(
+            child: Padding(
+              padding: const EdgeInsets.all(25),
+              child: MaterialButton(minWidth: Get.width/2,
+                onPressed: () =>controller.createUserAndLogin,
+                color: Colors.teal,
+                child: Text(
+                  'kayıt'.tr,
+                  style: normalBeyaz,
+                ),
               ),
             ),
           )
