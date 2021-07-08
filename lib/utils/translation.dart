@@ -6,11 +6,15 @@ class MyTranslation extends Translations{
   Map<String, Map<String, String>> get keys => {
     'en':{
       'title':'Blog App',
-      'body':'here is body'
+      'body':'here is body',
+      'kayıt':'Sing up',
+      'login':'Login'
     },
     'tr':{
       'title':'Blog uygulaması',
-      'body':'burası gövde '
+      'body':'burası gövde ',
+      'kayıt':'Kayıt ol ',
+      "login":'Giriş yap'
     }
   };
 

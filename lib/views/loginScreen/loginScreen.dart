@@ -1,3 +1,4 @@
+import 'package:blogapp/utils/textStyle.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -13,7 +14,10 @@ class LoginScreen extends GetView<LoginController> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
-            Image.asset('assets/images/blogApp.png',scale:8,),
+            Image.asset(
+              'assets/images/blogApp.png',
+              scale: 8,
+            ),
             Text('title'.tr),
             Padding(
               padding: const EdgeInsets.all(8.0),
@@ -28,15 +32,34 @@ class LoginScreen extends GetView<LoginController> {
                       decoration: InputDecoration(hintText: 'username'),
                       controller: controller.usernameController,
                     ),
-
                   ],
                 ),
               ),
             ),
-            MaterialButton(color: Colors.teal,minWidth: Get.width*.8,
-              onPressed: () {controller.login();},
-              child: Text('Giriş Yap',style: TextStyle(color:
-              Colors.white),),
+            MaterialButton(
+              color: Colors.teal,
+              minWidth: Get.width * .8,
+              onPressed: () {
+                controller.login();
+              },
+              child: Text(
+                'login'.tr,
+                style: TextStyle(color: Colors.white),
+              ),
+            ),
+            Row(mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text(
+                  'Hesabınız Yokmu? ',
+                  style: normalSiyah,
+                ),
+                GestureDetector(
+                  child: Text(
+                    'kayıt'.tr,
+                    style: boldStyle,
+                  ),
+                )
+              ],
             )
           ],
         ),
