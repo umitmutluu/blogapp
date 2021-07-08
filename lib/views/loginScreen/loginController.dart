@@ -1,9 +1,12 @@
+import 'package:blogapp/views/presenter/presenterScreen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 
 class LoginController extends GetxController{
   TextEditingController usernameController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
+
+
   @override
   void onReady() {
     // TODO: implement onReady
@@ -20,4 +23,13 @@ class LoginController extends GetxController{
     // TODO: implement onClose
     super.onClose();
   }
+
+
+  void login(){
+    Get.off(PresenterScreen());
+  }
+
+
+
+
 }
