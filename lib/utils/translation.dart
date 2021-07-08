@@ -11,7 +11,8 @@ class MyTranslation extends Translations{
       'email':'e-mail',
       'hesapAc':'Don\'t have an account? ',
       'olustur':'Create account! ',
-
+'bağlantıDoğru':'Connection OK',
+'bağlantıYanlış':'Connection Failed',
       'zatenVar':"Already have an account?",
       'password':'Password',
       'kayıt':'Sing up',
@@ -26,7 +27,8 @@ class MyTranslation extends Translations{
       'email':'E-Posta',
       'hesapAc':'Bir Hesabınız Yok mu? ',
       'olustur':'Hesap Oluştur! ',
-
+      'bağlantıDoğru':'İnternet Bağlantısı var!',
+      'bağlantıYanlış':'İnternet Bağlantı Hatası',
       'zatenVar':"Zaten bir hesabın var mı?  ",
       'password':'Şifre',
       'kayıt':'Kayıt ol ',

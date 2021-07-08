@@ -1,4 +1,5 @@
 import 'package:blogapp/routes/appPages.dart';
+import 'package:blogapp/services/connectivity.dart';
 import 'package:blogapp/utils/translation.dart';
 import 'package:blogapp/views/loginScreen/loginController.dart';
 import 'package:blogapp/views/loginScreen/loginScreen.dart';
@@ -12,6 +13,8 @@ void main() async {
   //await Firebase.initializeApp();
   Get.lazyPut<LoginController>(()=>LoginController());
   Get.lazyPut<PresenterController>(() => PresenterController());
+  final connectionService = Get.put(ConnectivityService(), permanent: true);
+
   runApp(MyApp());
 }
 
