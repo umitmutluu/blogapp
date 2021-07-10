@@ -165,7 +165,7 @@ class RegisterWidget extends StatelessWidget {
             child: Padding(
               padding: const EdgeInsets.all(25),
               child: MaterialButton(minWidth: Get.width/2,
-                onPressed: () =>controller.createUserAndLogin,
+                onPressed: () =>controller.createUserAndLogin(),
                 color: Colors.teal,
                 child: Text(
                   'kayıt'.tr,
