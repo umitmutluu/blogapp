@@ -47,7 +47,7 @@ class RegisterController extends GetxController {
         password.text.isNotEmpty) {
       var sonuc =
           await createUser(name.text, username.text, email.text, password.text);
-      print(sonuc);
+      print('bakbura ${sonuc.name}');
       Get.off(PresenterScreen());
     } else
       Get.snackbar('title'.tr, 'boşBırakma'.tr,
@@ -60,16 +60,12 @@ class RegisterController extends GetxController {
   Future<User> createUser(
       String name, String username, String email, String password) async {
     try {
-      final _response = await primaryApiService.createAlbum({
-        "name": name,
-        "username": username,
-        "email": email,
-        "password": password
-      });
+      final _response = await primaryApiService.createAlbum(name,username,
+        email,password);
 
-      return _response['result'];
+      return _response;
     } catch (e) {
-      print(e.toString());
+      print('hatamız'+e.toString());
       return User();
     }
   }
