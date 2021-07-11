@@ -9,7 +9,9 @@ app.use(express.urlencoded({extended:true}));
 
 app.use('/api/users',userRouter);
 
-
+app.get('/',(req,res)=>{
+    res.json({message:"Welcommmeennnn aslanımmmm"});
+});
 
 
 
