@@ -6,23 +6,33 @@ const createError = require('http-errors');
 
 
 
-router.get('/list', async (req, res) => {
-    const allUsers = await User.find({});
-    res.json(allUsers);
+router.get('/list', async (req, res,next) => {
+
+    try{
+        await User.find({}).then((result) => {
+            res.status(200).json(result);
+        }).catch((err) => {
+            res.json(err);
+        });
+    }catch(e){
+next(createError(400,"BadBoy Request"));
+    }
+
+     
 
 });
 
-router.get('/list/:id', async (req, res) => {
+router.get('/list/:id', async (req, res,next) => {
 
     try{
-        const oneUser = await User.findById({_id:req.params.id});
-        if(oneUser){
-            res.json(oneUser);
-        }else{
-            next(createError(404,'Kullanıcı Bulunamadı'));
-        }
+         await User.findById({_id:req.params.id}).then((result) => {g
+            res.json(result)            
+        }).catch((err) => {
+            res.status(503).json({message:err});
+        });;
+    
     }catch(e){
-        next(createError(400,"Bad Request..."));
+        next(createError(400,"Bad Request..."+e));
 
     }
    
@@ -31,9 +41,14 @@ router.get('/list/:id', async (req, res) => {
 });
 router.post('/create', async (req, res, next) => {
     try {
-        const newUser = new User(req.body);
+        const newUser = new User({
+            name:req.body.name,
+            username:req.body.username,
+            email:req.body.email,
+            password:req.body.password,
+        });
         const val = await newUser.save();
-        res.json(val);
+        res.status(200).json(val);
         console.log(req.body);
     } catch (e) {
         next(createError(400, 'bad Request'));

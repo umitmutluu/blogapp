@@ -2,15 +2,20 @@ const express = require('express');
 require('./database/mongdb');
 const app =express();
 const userRouter=require('./router/userRouter');
+const helmet=require('helmet');
+const morgan=require('morgan');
 
 app.use(express.json());
 app.use(express.urlencoded({extended:true}));
+app.use(helmet());
+app.use(morgan("common"));
+
 
 
 app.use('/api/users',userRouter);
 
 app.get('/',(req,res)=>{
-    res.json({message:"Welcommmeennnn aslanımmmm"});
+    res.status(200).json({message:"Welcommmeennnn aslanımmmm"});
 });
 
 

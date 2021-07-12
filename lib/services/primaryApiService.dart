@@ -3,14 +3,14 @@ import 'package:blogapp/models/userModel.dart';
 import 'package:http/http.dart' as http;
 
 class PrimaryApiService {
-  Future<User> createAlbum(
+  Future<dynamic> createAlbum(
     String name,
     String username,
     String email,
     String password,
   ) async {
     final response = await http.post(
-      Uri.parse('http://127.0.0.1:3000/api/users/create'),
+      Uri.parse('https://blogappdeployment.herokuapp.com/api/users/create'),
       headers: <String, String>{
         'Content-Type': 'application/json; charset=UTF-8',
       },
@@ -22,10 +22,13 @@ class PrimaryApiService {
       }),
     );
 
-    if (response.statusCode == 201) {
+    if ( response.statusCode==200) {
 // If the server did return a 201 CREATED response,
 // then parse the JSON.
-      return User.fromJson(jsonDecode(response.body));
+    var responser =await jsonDecode(response.body);
+    print(responser);
+    return responser;
+
     } else {
 // If the server did not return a 201 CREATED response,
 // then throw an exception.
