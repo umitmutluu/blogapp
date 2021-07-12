@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 
 
-mongoose.connect("mongodb+srv://admin:112224448Aa--@cluster0.hg85r.mongodb.net/myFirstDatabase?retryWrites=true", {
+mongoose.connect("mongodb+srv://admin:112224448Aa--@cluster0.hg85r.mongodb.net/BlogApp?retryWrites=true", {
    useNewUrlParser:true,
    useUnifiedTopology:true,
    useCreateIndex:true

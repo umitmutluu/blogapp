@@ -47,8 +47,12 @@ router.post('/create', async (req, res, next) => {
             email:req.body.email,
             password:req.body.password,
         });
-        const val = await newUser.save();
-        res.status(200).json(val);
+         await newUser.save().then((result) => {
+             res.status(200).json(result);
+         }).catch((err) => {
+             res.status(503).json(err);
+         });;
+      
         console.log(req.body);
     } catch (e) {
         next(createError(400, 'bad Request'));

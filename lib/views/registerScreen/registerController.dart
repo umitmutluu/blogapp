@@ -57,7 +57,7 @@ class RegisterController extends GetxController {
           forwardAnimationCurve: Curves.elasticOut);
   }
 
-  Future<dynamic> createUser(
+  Future<User> createUser(
       String name, String username, String email, String password) async {
 
       final _response = await primaryApiService.createAlbum(name,username,
