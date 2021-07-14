@@ -10,7 +10,7 @@ class PrimaryApiService {
     String password,
   ) async {
     final response = await http.post(
-      Uri.parse('https://blogappdeployment.herokuapp.com/api/users/create'),
+      Uri.parse('https://blogapp53.herokuapp.com/api/users/create'),
       headers: <String, String>{
         'Content-Type': 'application/json; charset=UTF-8',
       },
