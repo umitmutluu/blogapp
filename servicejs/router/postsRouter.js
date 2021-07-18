@@ -14,7 +14,7 @@ router.post('/create', async (req, res, next) => {
         const savePost = await newPost.save();
         res.status(200).json(savePost);
     } catch (e) {
-        next(createError(400, `An Error  ${e}`));
+        next(createError(400, `An Error Occured ${e}`));
     }
 });
 
