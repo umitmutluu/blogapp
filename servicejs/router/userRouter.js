@@ -1,8 +1,8 @@
 const router = require('express').Router();
 const User = require('../model/userModel');
 const createError = require('http-errors');
-
-
+const jwt =require('jsonwebtoken');
+require('dotenv').config();
 
 
 
@@ -62,14 +62,16 @@ router.post('/login',async (req,res,next)=>{
         const user=await User.findOne({email:req.body.email});
 
 if(user.password===req.body.password){
-    res.json(user);
+  const accessToken= jwt.sign(user.username,process.env.SECRET_TOKEN);
+  res.json({accessToken:accessToken});
+    
+
 }else{
     res.status(404).send('Not Found 404');
 }
     }catch(e){
-next(createError(400,"Bir hata oluştu"));
+next(createError(400,"Bir hata oluştu"+e));
     }
-
 
 });
 

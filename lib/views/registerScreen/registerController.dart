@@ -60,7 +60,7 @@ class RegisterController extends GetxController {
   Future<User> createUser(
       String name, String username, String email, String password) async {
 
-      final _response = await primaryApiService.createAlbum(name,username,
+      final _response = await primaryApiService.sendData(name,username,
         email,password);
 
       return User.fromJson(_response);

@@ -1,9 +1,8 @@
 import 'dart:convert';
-import 'package:blogapp/models/userModel.dart';
 import 'package:http/http.dart' as http;
 
 class PrimaryApiService {
-  Future<dynamic> createAlbum(
+  Future<dynamic> sendData(
     String name,
     String username,
     String email,
