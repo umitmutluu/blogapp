@@ -32,6 +32,22 @@ const userSchema= new Schema({
         type: String,
         required: true,
         trim: true
+    },
+    picture:{
+        type:String,
+        default:""
+    },
+    isAdmin:{
+        type:Boolean,
+        default:false
+    },
+    following:{
+        type:Array,
+        default:[],
+    },
+    followers:{
+        type:Array,
+        default:[],
     }
 },{collection:'Users',timestamps:true});
 
