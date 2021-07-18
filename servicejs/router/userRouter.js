@@ -6,6 +6,18 @@ require('dotenv').config();
 
 
 
+//auth function
+function authenticate (req,res,next){
+  const authHeader =req.headers['Authorization']
+  const token = authHeader&&authHeader.split(' ')[1]
+
+  jwt.verify(token,process.env.SECRET_TOKEN,(err,user)=>{
+    if(err) return res.status(401)
+    req.user=user
+    next()
+  })
+}
+
 router.get('/list', async (req, res,next) => {
 
     try{
@@ -40,6 +52,22 @@ router.get('/list/:id', async (req, res,next) => {
 
 });
 
+router.get('/listauth', authenticate,async (req, res,next) => {
+
+  try{
+      await User.find({}).then((result) => {
+          res.status(200).json(result);
+      }).catch((err) => {
+          res.json(err);
+      });
+  }catch(e){
+next(createError(400,"BadBoy Request"));
+  }
+
+   
+
+});
+
 
 router.post('/create', async (req, res, next) => {
     try {
@@ -57,16 +85,17 @@ router.post('/create', async (req, res, next) => {
 });
 
 
+
 router.post('/login',async (req,res,next)=>{
     try{
         const user=await User.findOne({email:req.body.email});
 
 if(user.password===req.body.password){
+
   const accessToken= jwt.sign(user.username,process.env.SECRET_TOKEN);
   res.json({accessToken:accessToken});
-    
 
-}else{
+  }else{
     res.status(404).send('Not Found 404');
 }
     }catch(e){
@@ -74,6 +103,9 @@ next(createError(400,"Bir hata oluştu"+e));
     }
 
 });
+
+
+
 
 
 router.delete('/list/:id',async(req,res,next)=>{
