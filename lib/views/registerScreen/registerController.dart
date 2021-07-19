@@ -59,11 +59,15 @@ class RegisterController extends GetxController {
 
   Future<User> createUser(
       String name, String username, String email, String password) async {
+    final _response = await primaryApiService.postMethods("/api/users/create", {
+      'name': name,
+      'username': username,
+      'email': email,
+      'password': password,
+    });
 
-      final _response = await primaryApiService.sendData(name,username,
-        email,password);
-
-      return User.fromJson(_response);
-
+    var responser= User.fromJson(_response);
+    print(responser);
+    return responser;
   }
 }

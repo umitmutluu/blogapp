@@ -10,6 +10,10 @@ String userToJson(User data) => json.encode(data.toJson());
 
 class User {
   User({
+    this.picture,
+    this.isAdmin,
+    this.following,
+    this.followers,
     this.id,
     this.name,
     this.username,
@@ -20,9 +24,13 @@ class User {
     this.v,
   });
 
+  String? picture;
+  bool? isAdmin;
+  List<dynamic>? following;
+  List<dynamic>? followers;
   String? id;
   String? name;
-  String? username;
+  String?username;
   String? email;
   String? password;
   DateTime? createdAt;
@@ -30,28 +38,32 @@ class User {
   int? v;
 
   factory User.fromJson(Map<String, dynamic> json) => User(
-        id: json["_id"] == null ? null : json["_id"],
-        name: json["name"] == null ? null : json["name"],
-        username: json["username"] == null ? null : json["username"],
-        email: json["email"] == null ? null : json["email"],
-        password: json["password"] == null ? null : json["password"],
-        createdAt: json["createdAt"] == null
-            ? null
-            : DateTime.parse(json["createdAt"]),
-        updatedAt: json["updatedAt"] == null
-            ? null
-            : DateTime.parse(json["updatedAt"]),
-        v: json["__v"] == null ? null : json["__v"],
-      );
+    picture: json["picture"],
+    isAdmin: json["isAdmin"],
+    following: List<dynamic>.from(json["following"].map((x) => x)),
+    followers: List<dynamic>.from(json["followers"].map((x) => x)),
+    id: json["_id"],
+    name: json["name"],
+    username: json["username"],
+    email: json["email"],
+    password: json["password"],
+    createdAt: DateTime.parse(json["createdAt"]),
+    updatedAt: DateTime.parse(json["updatedAt"]),
+    v: json["__v"],
+  );
 
   Map<String, dynamic> toJson() => {
-        "_id": id == null ? null : id,
-        "name": name == null ? null : name,
-        "username": username == null ? null : username,
-        "email": email == null ? null : email,
-        "password": password == null ? null : password,
-        "createdAt": createdAt == null ? null : createdAt!.toIso8601String(),
-        "updatedAt": updatedAt == null ? null : updatedAt!.toIso8601String(),
-        "__v": v == null ? null : v,
-      };
+    "picture": picture,
+    "isAdmin": isAdmin,
+    "following": List<dynamic>.from(following!.map((x) => x)),
+    "followers": List<dynamic>.from(followers!.map((x) => x)),
+    "_id": id,
+    "name": name,
+    "username": username,
+    "email": email,
+    "password": password,
+    "createdAt": createdAt!.toIso8601String(),
+    "updatedAt": updatedAt!.toIso8601String(),
+    "__v": v,
+  };
 }

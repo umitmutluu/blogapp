@@ -13,12 +13,14 @@ class PresenterScreen extends GetView<PresenterController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(backgroundColor: Colors.white,
-        title: Text('title'.tr,style: GoogleFonts.architectsDaughter(color:
-        Colors.black),),
+      appBar: AppBar(
+        backgroundColor: Colors.white,
+        title: Text(
+          'title'.tr,
+          style: GoogleFonts.architectsDaughter(color: Colors.black),
+        ),
         centerTitle: true,
-      ),drawer: Drawer(elevation: 2,child: ListView(children: [Text('Başlık')],
-    ),),
+      ),
       backgroundColor: Colors.white,
       body: SizedBox.expand(
         child: PageView(
