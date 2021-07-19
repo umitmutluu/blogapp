@@ -4,6 +4,8 @@ import 'package:http/http.dart' as http;
 
 class PrimaryApiService {
   Dio dio =Dio();
+
+  //post methods here!
   Future<dynamic> postMethods(String endPoints,
       Map<String, dynamic> requirements,) async {
     final response = await dio.post(
@@ -24,4 +26,8 @@ class PrimaryApiService {
       throw Exception('Failed to create album.');
     }
   }
+
+
+
+
 }

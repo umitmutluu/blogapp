@@ -1,12 +1,27 @@
 const router = require('express').Router();
 const Post = require('../model/postsModel');
 const createError = require('http-errors');
+const multer = require('multer');
+const path = require('path');
+
+
+
+const storage = multer.diskStorage({
+    destination: (req, file, cb) => {
+        cb(null, 'images')
+    },
+    filename: (req, file, cb) => {
+        console.log(file)
+        cb(null, Date.now() + path.extname(file.originalname))
+    }
+})
+const upload =multer({storage:storage});
 
 
 
 //create a post
 
-router.post('/create', async (req, res, next) => {
+router.post('/create',upload.single('img'), async (req, res, next) => {
 
     const newPost = new Post(req.body)
 
@@ -49,5 +64,11 @@ router.delete('/delete/:id', async (req, res, next) => {
         next(createError(500, `Error occured ${e}`));
     }
 });
+
+
+
+
+
+
 
 module.exports = router;
