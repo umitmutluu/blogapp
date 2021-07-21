@@ -1,5 +1,6 @@
 import 'package:blogapp/routes/appPages.dart';
 import 'package:blogapp/services/connectivity.dart';
+import 'package:blogapp/services/storageHive.dart';
 import 'package:blogapp/utils/translation.dart';
 import 'package:blogapp/views/loginScreen/loginController.dart';
 import 'package:blogapp/views/loginScreen/loginScreen.dart';
@@ -11,10 +12,10 @@ import 'package:get/get.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   //await Firebase.initializeApp();
+  await Get.put(StorageHive().initHive());
+
   Get.lazyPut<LoginController>(()=>LoginController());
   Get.lazyPut<PresenterController>(() => PresenterController());
-  final connectionService = Get.put(ConnectivityService(), permanent: true);
-
   runApp(MyApp());
 }
 
