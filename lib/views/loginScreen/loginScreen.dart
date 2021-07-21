@@ -46,11 +46,6 @@ class LoginScreen extends GetView<LoginController>  {
     );
   }
 }
-/*,
-,
-
-"Already have an account?",
-"Sign in!!",*/
 
 class LoginWidget extends StatelessWidget {
   final LoginController controller;

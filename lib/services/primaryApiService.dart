@@ -10,7 +10,7 @@ class PrimaryApiService {
       Map<String, dynamic> requirements,) async {
     final response = await dio.post(
         'https://blogapp53.herokuapp.com'+endPoints,data: requirements,
-
+//todo opstions sekmesinde header seçeneği eklenecek ve dönen header da tokenvar
     );
 
     if (response.statusCode == 200||response.statusCode==201) {

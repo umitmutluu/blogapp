@@ -88,12 +88,13 @@ router.post('/create', async (req, res, next) => {
 
 router.post('/login',async (req,res,next)=>{
     try{
-        const user=await User.findOne({email:req.body.email});
+        const user=await User.findOne({username:req.body.username});
 
 if(user.password===req.body.password){
 
   const accessToken= jwt.sign(user.username,process.env.SECRET_TOKEN);
-  res.json({accessToken:accessToken});
+  res.status(200).json(user);
+  res.header(accessToken);
 
   }else{
     res.status(404).send('Not Found 404');
