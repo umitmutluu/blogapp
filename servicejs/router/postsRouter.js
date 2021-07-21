@@ -1,8 +1,9 @@
 const router = require('express').Router();
-const Post = require('../model/postsModel');
+const PostModel = require('../model/postsModel');
 const createError = require('http-errors');
 const multer = require('multer');
 const path = require('path');
+const fs =require('fs');
 
 
 
@@ -14,8 +15,15 @@ const storage = multer.diskStorage({
         console.log(file)
         cb(null, Date.now() + path.extname(file.originalname))
     }
-})
-const upload =multer({storage:storage});
+});
+const filefilter=(req,file,cb)=>{
+    if (file.mimetype==='image/png'|| file.mimetype==='image/jpg'||file.mimetype==='image.jpeg'){
+        cb(null,true);
+    }else{
+        cb(null,false);
+    }
+}
+const upload =multer({storage:storage,fileFilter:filefilter});
 
 
 
@@ -23,14 +31,20 @@ const upload =multer({storage:storage});
 
 router.post('/create',upload.single('img'), async (req, res, next) => {
 
-    const newPost = new Post(req.body)
+try{
+    const postval=new PostModel(req.body);
+postval.save().then((result) => {
+    res.status(200).json(result);
+}).catch((err) => {
+    res.status(503).json(err);
+});
 
-    try {
-        const savePost = await newPost.save();
-        res.status(200).json(savePost);
-    } catch (e) {
-        next(createError(400, `An Error 1234564554 ${e}`));
-    }
+console.log(req.body);
+} catch (e) {
+next(createError(400, 'bad Request'));
+}
+
+
 });
 
 

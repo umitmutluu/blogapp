@@ -1,4 +1,7 @@
 const mongoose=require('mongoose');
+const fs =require('fs');
+const path=require('path');
+
 
 const PostSchema=new mongoose.Schema({
   userID:{
@@ -10,7 +13,9 @@ const PostSchema=new mongoose.Schema({
     maxlength:100
   },
   img:{
-      type:String
+      type:Buffer,
+      contentType:String,
+      default:""
     },
   likes:{
       type:Array,

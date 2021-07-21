@@ -7,7 +7,7 @@ const helmet=require('helmet');
 const morgan=require('morgan');
 
 app.use(express.json());
-app.use(express.urlencoded({extended:true}));
+app.use(express.urlencoded({extended:false}));
 app.use(helmet());
 app.use(morgan("common"));
 

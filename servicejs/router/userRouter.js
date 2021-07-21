@@ -76,7 +76,7 @@ router.post('/create', async (req, res, next) => {
              res.status(200).json(result);
          }).catch((err) => {
              res.status(503).json(err);
-         });;
+         });
       
         console.log(req.body);
     } catch (e) {
