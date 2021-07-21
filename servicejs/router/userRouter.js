@@ -5,7 +5,7 @@ const jwt =require('jsonwebtoken');
 require('dotenv').config();
 
 
-
+//CHECK AUTHORİZATİON BEARER SİDE !!!!!!!!!!!!!!!!!!!!!!!!
 //auth function
 function authenticate (req,res,next){
   const authHeader =req.headers['Authorization']
@@ -93,8 +93,7 @@ router.post('/login',async (req,res,next)=>{
 if(user.password===req.body.password){
 
   const accessToken= jwt.sign(user.username,process.env.SECRET_TOKEN);
-  res.status(200).json(user);
-  res.header(accessToken);
+  res.status(200).json({user,accessToken});
 
   }else{
     res.status(404).send('Not Found 404');
