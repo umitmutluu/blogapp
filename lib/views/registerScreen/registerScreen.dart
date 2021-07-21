@@ -1,7 +1,10 @@
+import 'dart:io';
+
 import 'package:blogapp/utils/assetPaths.dart';
 import 'package:blogapp/utils/textStyle.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:hive/hive.dart';
 
 import 'registerController.dart';
 
@@ -15,21 +18,19 @@ class RegisterScreen extends GetView<RegisterController> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Image.asset(blogApp),
+            Image.asset(blogAppLogo),
             RegisterWidget(controller: controller),
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Text('zatenVar'.tr,
-                      style: TextStyle(color: Colors.black)),
+                  Text('zatenVar'.tr, style: TextStyle(color: Colors.black)),
                   GestureDetector(
                     onTap: () => controller.geriDon(),
-                    child: Text('login'.tr,
-                        style: TextStyle(color: Colors.blue)),
+                    child:
+                        Text('login'.tr, style: TextStyle(color: Colors.blue)),
                   ),
-
                 ],
               ),
             ),
@@ -39,7 +40,6 @@ class RegisterScreen extends GetView<RegisterController> {
     );
   }
 }
-
 
 class RegisterWidget extends StatelessWidget {
   final RegisterController controller;
@@ -61,6 +61,34 @@ class RegisterWidget extends StatelessWidget {
           borderRadius: BorderRadius.circular(20)),
       child: Wrap(
         children: [
+          GestureDetector(
+            onTap: () {
+              print('create 2 option Gallery And Take Pic');
+            },
+            child: Center(
+              child: controller.profileFile.value == ""
+                  ? Container(
+height: Get.width*.4,width: Get.height*.2,decoration: BoxDecoration(
+                border: Border.all(
+                    color: Colors.black,
+                    width:  3 ),
+                shape: BoxShape.circle,
+              ),
+                    child: Padding(
+                      padding: const EdgeInsets.all(2.0),
+                      child: CircleAvatar(
+                          radius: Get.width * .2,
+                          backgroundColor: Colors.white,
+                          backgroundImage: AssetImage(addPerson)),
+                    ),
+                  )
+                  : CircleAvatar(
+                      backgroundColor: Colors.white,
+                      backgroundImage:
+                          FileImage(File(controller.profileFile.value)),
+                    ),
+            ),
+          ),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
@@ -124,7 +152,8 @@ class RegisterWidget extends StatelessWidget {
                 child: Padding(
                   padding:
                       const EdgeInsets.symmetric(horizontal: 12, vertical: 4),
-                  child: TextField(keyboardType: TextInputType.emailAddress,
+                  child: TextField(
+                    keyboardType: TextInputType.emailAddress,
                     controller: controller.email,
                     decoration: InputDecoration(
                         icon: Icon(Icons.email_outlined),
@@ -164,8 +193,9 @@ class RegisterWidget extends StatelessWidget {
           Center(
             child: Padding(
               padding: const EdgeInsets.all(25),
-              child: MaterialButton(minWidth: Get.width/2,
-                onPressed: () =>controller.createUserAndLogin(),
+              child: MaterialButton(
+                minWidth: Get.width / 2,
+                onPressed: () => controller.createUserAndLogin(),
                 color: Colors.teal,
                 child: Text(
                   'kayıt'.tr,

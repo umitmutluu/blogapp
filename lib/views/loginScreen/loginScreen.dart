@@ -18,7 +18,7 @@ class LoginScreen extends GetView<LoginController>  {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Image.asset(blogApp),
+            Image.asset(blogAppLogo),
             LoginWidget(controller: controller),
 
             Padding(

@@ -3,14 +3,33 @@ import 'package:blogapp/services/primaryApiService.dart';
 import 'package:blogapp/views/presenter/presenterScreen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:image_picker/image_picker.dart';
 
 class RegisterController extends GetxController {
   final PrimaryApiService primaryApiService = Get.put(PrimaryApiService());
+  final picker=ImagePicker();
+  RxString profileFile = ''.obs;
+
   TextEditingController name = TextEditingController();
   TextEditingController username = TextEditingController();
   TextEditingController email = TextEditingController();
   TextEditingController password = TextEditingController();
-  RxBool isLogin = true.obs;
+
+  void selectPhotoFromGalerry() async {
+    final pickedFile = await picker.getImage(source: ImageSource.gallery);
+    if (pickedFile != null) {
+      profileFile = pickedFile.path.obs;
+      update();
+    }
+  }
+
+  void takePhoto() async {
+    final pickedFile = await picker.getImage(source: ImageSource.camera);
+    if (pickedFile != null) {
+      profileFile = pickedFile.path.obs;
+      update();
+    }
+  }
 
   @override
   void onReady() {

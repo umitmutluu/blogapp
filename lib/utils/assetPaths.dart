@@ -1,5 +1,6 @@
 final String imageAssetsRoot = "assets/images/";
-final String blogApp = _getImagePath("blogApp.png");
+final String blogAppLogo = _getImagePath("blogApp.png");
+final String addPerson = _getImagePath("addPerson.png");
 /*
 final String image2 = _getImagePath("2.jpeg");
 final String image3 = _getImagePath("3.jpeg");
