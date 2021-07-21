@@ -29,16 +29,13 @@ class LoginController extends GetxController {
     super.onClose();
   }
 
-  Future<void> login() async {
-    //todo buraya authmetodu gelecek token alınacak şifre kontrolu yapılacak
-    Get.off(PresenterScreen());
-  }
 
-  Future<void> createUserAndLogin() async {
+
+  Future<void> login() async {
     if (username.text.isNotEmpty && password.text.isNotEmpty) {
       var sonuc =
           await loginMethod(username.text,password.text);
-      print('hello $sonuc');
+      print('giris yapıldı deger: $sonuc');
 
       //todo burada istersen header dan gelen token taydedilebilir
        Get.off(PresenterScreen());
@@ -64,7 +61,7 @@ Future<dynamic> loginMethod (String username,String password)async{
       print(returnvalue);
       return returnvalue;
     }catch(e){
-      return print(e);
+      print('loginMethod hatası : $e');
     }
 
 
