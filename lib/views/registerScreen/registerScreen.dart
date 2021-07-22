@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:blogapp/utils/assetPaths.dart';
 import 'package:blogapp/utils/textStyle.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'registerController.dart';
@@ -61,7 +62,43 @@ class RegisterWidget extends StatelessWidget {
         children: [
           GestureDetector(
             onTap: () {
-              print('create 2 option Gallery And Take Pic');
+             showModalBottomSheet(context: context, builder:
+                 (context)
+             =>Container(decoration: BoxDecoration(color: Colors.white,
+                 borderRadius: BorderRadius.circular(10.0)),  child: Column(
+               mainAxisSize: MainAxisSize.min,
+               children: [
+                 GestureDetector(
+                   onTap:(){
+                     controller.selectPhotoFromGalerry();
+                   },
+                   child: Text(
+                     'gallery'.tr,
+                     style: TextStyle(
+                       color: Color(0xFF6057a8),
+                       fontSize: Get.width * .07,
+                       fontWeight: FontWeight.bold,
+                     ),
+                   ),
+                 ),
+                 SizedBox(height: 8),
+                 Visibility(
+                   child: GestureDetector(
+                     onTap: (){
+                       controller.takePhoto();
+                     },
+                     child: Text(
+                       'takephoto'.tr,
+                       style: TextStyle(
+                         color: Color(0xFF6057a8),
+                         fontSize: Get.width * .07,
+                         fontWeight: FontWeight.bold,
+                       ),
+                     ),
+                   ),
+                 ),
+               ],
+             ),));
             },
             child: Center(
               child: controller.profileFile.value == ""
@@ -75,16 +112,27 @@ height: Get.width*.4,width: Get.height*.2,decoration: BoxDecoration(
                     child: Padding(
                       padding: const EdgeInsets.all(2.0),
                       child: CircleAvatar(
-                          radius: Get.width * .2,
+                          radius: Get.width * 0.15,
                           backgroundColor: Colors.white,
                           backgroundImage: AssetImage(addPerson)),
                     ),
                   )
-                  : CircleAvatar(
-                      backgroundColor: Colors.white,
-                      backgroundImage:
-                          FileImage(File(controller.profileFile.value)),
+                  : Container(
+                height: Get.width*.4,width: Get.height*.2,decoration: BoxDecoration(
+                border: Border.all(
+                    color: Colors.black,
+                    width:  3 ),
+                shape: BoxShape.circle,
+              ),
+                    child: Padding(
+                      padding: const EdgeInsets.all(2.0),
+                      child: CircleAvatar(radius: Get.width*0.15,
+                          backgroundColor: Colors.white,
+                          backgroundImage:
+                              FileImage(File(controller.profileFile.value)),
+                        ),
                     ),
+                  ),
             ),
           ),
           Row(

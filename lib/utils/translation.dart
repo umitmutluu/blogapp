@@ -18,7 +18,9 @@ class MyTranslation extends Translations{
       'kayıt':'Sing up',
       'Err':'Error',
       'boşBırakma':"Do not leave fields blank",
-      'login':'Sign in!!'
+      'login':'Sign in!!',
+      'gallery':'Select from Gallery',
+      'takephoto':'Take a photo from camera'
     },
     'tr':{
       'title':'Blog uygulaması',
@@ -34,7 +36,9 @@ class MyTranslation extends Translations{
       'kayıt':'Kayıt ol ',
       'Err':'Hata ',
       'boşBırakma':'Zorunlu alanları boş bırakamazsınız ',
-      "login":'Giriş yap'
+      "login":'Giriş yap',
+      'gallery':'Galeriden Seç',
+      'takephoto':'Fotoğraf çek'
     }
   };
 

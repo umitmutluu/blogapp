@@ -13,7 +13,6 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   //await Firebase.initializeApp();
   await Get.put(StorageHive().initHive());
-
   Get.lazyPut<LoginController>(()=>LoginController());
   Get.lazyPut<PresenterController>(() => PresenterController());
   runApp(MyApp());

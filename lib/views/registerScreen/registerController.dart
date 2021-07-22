@@ -9,7 +9,6 @@ class RegisterController extends GetxController {
   final PrimaryApiService primaryApiService = Get.put(PrimaryApiService());
   final picker=ImagePicker();
   RxString profileFile = ''.obs;
-
   TextEditingController name = TextEditingController();
   TextEditingController username = TextEditingController();
   TextEditingController email = TextEditingController();
@@ -29,6 +28,7 @@ class RegisterController extends GetxController {
       profileFile = pickedFile.path.obs;
       update();
     }
+
   }
 
   @override
