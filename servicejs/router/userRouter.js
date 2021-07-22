@@ -3,6 +3,28 @@ const User = require('../model/userModel');
 const createError = require('http-errors');
 const jwt =require('jsonwebtoken');
 require('dotenv').config();
+const multer = require('multer');
+const path = require('path');
+const fs =require('fs');
+
+const storage = multer.diskStorage({
+  destination: (req, file, cb) => {
+      cb(null, 'images')
+  },
+  filename: (req, file, cb) => {
+      console.log(file)
+      cb(null, Date.now() + path.extname(file.originalname))
+  }
+});
+const filefilter=(req,file,cb)=>{
+  if (file.mimetype==='image/png'|| file.mimetype==='image/jpg'||file.mimetype==='image.jpeg'){
+      cb(null,true);
+  }else{
+      cb(null,false);
+  }
+}
+const upload =multer({storage:storage,fileFilter:filefilter});
+
 
 
 //CHECK AUTHORİZATİON BEARER SİDE !!!!!!!!!!!!!!!!!!!!!!!!
@@ -69,7 +91,7 @@ next(createError(400,"BadBoy Request"));
 });
 
 
-router.post('/create', async (req, res, next) => {
+router.post('/create',upload.single('picture'), async (req, res, next) => {
     try {
         const newUser = new User(req.body);
          await newUser.save().then((result) => {

@@ -34,8 +34,8 @@ const userSchema= new Schema({
         trim: true
     },
     picture:{
-        type:String,
-        default:""
+        type:Buffer,
+        contentType:String
     },
     isAdmin:{
         type:Boolean,

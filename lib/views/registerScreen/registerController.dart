@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:blogapp/models/userModel.dart';
 import 'package:blogapp/services/primaryApiService.dart';
 import 'package:blogapp/views/presenter/presenterScreen.dart';
@@ -63,9 +65,11 @@ class RegisterController extends GetxController {
     if (name.text.isNotEmpty &&
         username.text.isNotEmpty &&
         email.text.isNotEmpty &&
+        profileFile.value!=""&&
         password.text.isNotEmpty) {
       var sonuc =
-          await createUser(name.text, username.text, email.text, password.text);
+          await createUser(name.text, username.text, email.text, password
+              .text,File(profileFile.value));
       print('bakbura ${sonuc.name}');
       Get.off(PresenterScreen());
     } else
@@ -77,12 +81,15 @@ class RegisterController extends GetxController {
   }
 
   Future<User> createUser(
-      String name, String username, String email, String password) async {
+      String name, String username, String email, String password,File
+      photoFile) async {
     final _response = await primaryApiService.postMethods("/api/users/create", {
       'name': name,
       'username': username,
       'email': email,
       'password': password,
+      'picture':photoFile
+
     });
 
     var responser= User.fromJson(_response);
